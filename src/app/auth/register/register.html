@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 style="color: #ad1457;">Create Your Account</h2>
+
+  <mat-card class="welcome-card">
+    <mat-card-content>
+      <h3 style="text-align: center;">Register for Credit Risk Portal</h3>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Full Name</mat-label>
+        <input matInput [(ngModel)]="name" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="email" type="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="password" type="password" required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" style="width: 100%; height: 50px; font-size: 1.2em;" (click)="register()">
+        Register
+      </button>
+
+      <div *ngIf="error" style="color: red; text-align: center; margin-top: 15px;">
+        {{ error }}
+      </div>
+
+      <p style="text-align: center; margin-top: 30px;">
+        Already have an account?
+        <a (click)="goLogin()" style="color: #ad1457; cursor: pointer; text-decoration: underline; font-weight: bold;">
+          Login here
+        </a>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

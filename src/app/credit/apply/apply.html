@@ -1,0 +1,66 @@
+<div class="container">
+  <h2>New Credit Application</h2>
+
+  <mat-card class="welcome-card">
+    <mat-card-content>
+      <div *ngIf="!loading && !result">
+        <form>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Credit Score</mat-label>
+            <input matInput type="number" [(ngModel)]="creditScore" name="creditScore">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Annual Income</mat-label>
+            <input matInput type="number" [(ngModel)]="annualIncome" name="annualIncome">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Existing Debt</mat-label>
+            <input matInput type="number" [(ngModel)]="existingDebt" name="existingDebt">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Missed Payments (last 12 months)</mat-label>
+            <input matInput type="number" [(ngModel)]="missedPaymentsLast12Months" name="missed">
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" (click)="submit()" style="width: 100%; height: 50px; font-size: 1.2em;">
+            Submit Application
+          </button>
+        </form>
+      </div>
+
+      <div *ngIf="loading">
+        <p style="text-align: center; font-size: 1.5em;">Scoring your application...</p>
+      </div>
+
+      <div *ngIf="result">
+        <h3 style="color: #ad1457;">Application Result</h3>
+        <p><strong>Score:</strong> {{ result.score }}</p>
+        <p><strong>Risk Level:</strong> {{ result.riskLevel }}</p>
+        <p><strong>Decision:</strong>
+          <span [style.color]="result.decision === 'APPROVE' ? 'green' : result.decision === 'REVIEW' ? 'orange' : 'red'">
+            {{ result.decision }}
+          </span>
+        </p>
+        <p><strong>Reason:</strong> {{ result.reason }}</p>
+
+        <hr />
+
+        <button mat-raised-button color="primary" (click)="reset()">New Application</button>
+        <button mat-stroked-button (click)="goDashboard()" style="margin-left: 10px;">Dashboard</button>
+        <button mat-stroked-button (click)="goHistory()" style="margin-left: 10px;">View History</button>
+      </div>
+
+      <div *ngIf="error" style="color: red; text-align: center;">
+        {{ error }}
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <button mat-stroked-button (click)="goDashboard()" style="margin-top: 20px;">
+    ← Back to Dashboard
+  </button>
+</div>
+

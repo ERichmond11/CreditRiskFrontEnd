@@ -1,0 +1,72 @@
+<div class="container">
+  <h2>Credit Risk Portal</h2>
+
+  <!-- WELCOME CARD -->
+  <mat-card class="welcome-card">
+    <mat-card-content style="text-align: center;">
+      <h3>Welcome back, {{ userName }}!</h3>
+      <p>Manage your credit applications with confidence.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+        <button mat-raised-button color="primary" (click)="goApply()" style="width: 260px;">
+          New Credit Application
+        </button>
+
+        <button mat-raised-button color="accent" (click)="goHistory()" style="width: 260px;">
+          View Application History
+        </button>
+
+        <button mat-raised-button color="warn" (click)="goWizard()" style="width: 260px;">
+          💬 Chat with Credit Wizard AI
+        </button>
+
+        <button mat-stroked-button (click)="logout()" style="margin-top: 10px;">
+          Logout
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- CREDIT SUMMARY -->
+  <h3 style="margin-top: 40px; text-align: center;">Your Credit Summary</h3>
+
+  <div *ngIf="stats; else noStats" class="summary-grid">
+    <mat-card class="stat-card">
+      <div class="stat-title">Total Applications</div>
+      <div class="stat-value">{{ stats.totalApplications }}</div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <div class="stat-title">Average Score</div>
+      <div class="stat-value">
+        {{ stats.averageScore > 0 ? (stats.averageScore | number:'1.0-1') : '—' }}
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <div class="stat-title">Approval Rate</div>
+      <div class="stat-value">
+        {{ stats.approvalRate | number:'1.0-0' }}%
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <div class="stat-title">Last Decision</div>
+      <div class="stat-decision">
+        {{ stats.lastDecision || 'N/A' }}
+      </div>
+      <div class="stat-date" *ngIf="stats.lastDate">
+        {{ stats.lastDate | date:'mediumDate' }}
+      </div>
+    </mat-card>
+  </div>
+
+  <ng-template #noStats>
+    <mat-card style="margin-top: 20px;">
+      <mat-card-content style="text-align: center; color: #666;">
+        Loading your summary... If this persists, try submitting an application!
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</div>
+

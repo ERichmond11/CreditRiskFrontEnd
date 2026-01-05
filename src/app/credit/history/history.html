@@ -1,0 +1,88 @@
+<div class="container">
+  <h2>Credit Application History</h2>
+
+  <div style="margin-bottom: 30px; text-align: center;">
+    <button mat-raised-button color="primary" (click)="goDashboard()">
+      ← Dashboard
+    </button>
+    <button mat-raised-button color="accent" (click)="goApply()" style="margin-left: 15px;">
+      New Application
+    </button>
+  </div>
+
+  <mat-card class="welcome-card">
+    <mat-card-content>
+      <div *ngIf="loading" style="text-align: center; padding: 40px;">
+        <p style="font-size: 1.4em;">Loading your application history...</p>
+      </div>
+
+      <div *ngIf="error" style="color: red; text-align: center; padding: 20px;">
+        {{ error }}
+      </div>
+
+      <div *ngIf="!loading && !dataSource.data.length">
+        <p style="text-align: center; font-size: 1.2em; color: #666;">
+          No applications found. Submit your first credit application to see it here!
+        </p>
+      </div>
+
+      <mat-table
+        [dataSource]="dataSource"
+        matSort
+        class="mat-elevation-z8"
+        *ngIf="!loading && dataSource.data.length">
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            {{ row.createdAt | date:'mediumDate' }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Score Column -->
+        <ng-container matColumnDef="score">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Score </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <strong>{{ row.score }}</strong>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Risk Level Column -->
+        <ng-container matColumnDef="riskLevel">
+          <mat-header-cell *matHeaderCellDef> Risk Level </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            {{ row.riskLevel }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Decision Column -->
+        <ng-container matColumnDef="decision">
+          <mat-header-cell *matHeaderCellDef> Decision </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <strong [style.color]="row.decision === 'APPROVE' ? '#4caf50' : row.decision === 'REVIEW' ? '#ff9800' : '#f44336'">
+              {{ row.decision }}
+            </strong>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Reason Column -->
+        <ng-container matColumnDef="reason">
+          <mat-header-cell *matHeaderCellDef> Reason </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            {{ row.reason }}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        *ngIf="!loading && dataSource.data.length">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,105 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.container {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #ad1457;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+
+.welcome-card {
+  margin: 20px 0;
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(173, 20, 87, 0.2);
+}
+
+.stat-card {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(173, 20, 87, 0.15);
+  border-radius: 12px;
+}
+
+.stat-number {
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #ad1457;
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  mat-grid-list {
+    cols: 1 !important;
+  }
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.summary-grid {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 240px);
+  gap: 24px;
+  justify-content: center;
+}
+
+.stat-card {
+  padding: 24px;
+  text-align: center;
+  border-radius: 14px;
+}
+
+.stat-title {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ad1457;
+}
+
+.stat-decision {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.stat-date {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #777;
+}

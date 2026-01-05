@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Credit Wizard AI</h2>
+
+  <button mat-stroked-button (click)="goDashboard()" style="margin-bottom: 20px;">
+    ← Back to Dashboard
+  </button>
+
+  <mat-card class="welcome-card">
+    <mat-card-content>
+      <div
+        class="chat-container"
+        style="height: 400px; overflow-y: auto; margin-bottom: 20px;"
+      >
+        <div *ngFor="let msg of messages; trackBy: trackByIndex" style="margin: 10px 0;">
+          <strong>{{ msg.role === 'ai' ? 'Wizard 🤖' : 'You' }}:</strong>
+          <p style="margin: 5px 0 0 0; white-space: pre-wrap;">
+            {{ msg.text }}
+          </p>
+        </div>
+      </div>
+
+      <div style="display: flex;">
+        <input
+          [(ngModel)]="input"
+          placeholder="Ask about your score, how to improve, etc..."
+          style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #ccc;"
+          (keyup.enter)="send()"
+          [disabled]="loading"
+        />
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="send()"
+          [disabled]="loading || !input.trim()"
+          style="margin-left: 10px;"
+        >
+          Send
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
