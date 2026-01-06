@@ -6,9 +6,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   template: `
-    <div style="padding:40px; font-size:32px; color:red;">
-      ANGULAR BOOTSTRAPPED ✅
-    </div>
     <router-outlet></router-outlet>
   `
 })
