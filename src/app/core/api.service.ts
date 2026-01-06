@@ -3,20 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class ApiService {
+
   private readonly BASE_URL = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   get<T>(path: string): Observable<T> {
-    return this.http.get<T>(this.BASE_URL + path);
+    return this.http.get<T>(`${this.BASE_URL}${path}`);
   }
 
   post<T>(path: string, body: any): Observable<T> {
-    return this.http.post<T>(this.BASE_URL + path, body);
+    return this.http.post<T>(`${this.BASE_URL}${path}`, body);
   }
 }
+
 
 
 
