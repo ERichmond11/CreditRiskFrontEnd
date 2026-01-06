@@ -5,9 +5,11 @@ import { RegisterComponent } from './auth/register/register';
 import { DashboardComponent } from './dashboard/dashboard';
 import { ApplyComponent } from './credit/apply/apply';
 import { HistoryComponent } from './credit/history/history';
-import {CreditWizardComponent} from './credit/wizard/credit-wizard';
+import { CreditWizardComponent } from './credit/wizard/credit-wizard';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
@@ -15,7 +17,9 @@ export const routes: Routes = [
   { path: 'apply', component: ApplyComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'wizard', component: CreditWizardComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+
+  // 🔴 REQUIRED fallback
+  { path: '**', redirectTo: 'login' }
 ];
 
 
