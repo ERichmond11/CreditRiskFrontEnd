@@ -6,8 +6,15 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   template: `
-    <h1></h1>
+    <div style="padding:40px; font-size:32px; color:red;">
+      ANGULAR BOOTSTRAPPED ✅
+    </div>
     <router-outlet></router-outlet>
   `
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    console.log('🔥 AppComponent constructor ran');
+  }
+}
+
