@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://creditriskbackend-5nsh.onrender.com'
+  apiBaseUrl: 'https://creditriskbackend-5nsh.onrender.com'
 };
-

@@ -3,12 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ApiService {
 
-  private readonly BASE_URL = environment.apiUrl;
+  private readonly BASE_URL = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +18,7 @@ export class ApiService {
     return this.http.post<T>(`${this.BASE_URL}${path}`, body);
   }
 }
+
 
 
 
